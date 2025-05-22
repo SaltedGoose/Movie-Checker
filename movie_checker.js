@@ -1,8 +1,9 @@
-var test_button = document.getElementById("test");
+var search_button = document.getElementById("search");
+var data = parseCSV
 
-test_button.onclick = test;
+search_button.onclick = search;
 
-function test(){
+function search(){
     var main = document.getElementById("main");
-    main.innerHTML = '<p>testing</p>';
+    main.innerHTML = data;
 }
