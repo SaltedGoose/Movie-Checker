@@ -35,5 +35,8 @@ async function search() {
     }
     else{
         movieName.innerHTML = "Movie Name: Movie Not Found" 
+        movieLocation.innerHTML = "Location: "
+        movieLetter.innerHTML = "Letter: "
+        movieNumber.innerHTML = "Number: "
     }
 }
