@@ -12,3 +12,7 @@ body {
 #main {
   flex: 1;
 }
+
+#movie-img{
+  width: 100%;
+}
