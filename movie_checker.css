@@ -1,17 +1,14 @@
-/* Make sure root fills full height */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Stretch main layout to fill remaining space */
 body {
   display: flex;
   flex-direction: column;
 }
 
-/* Let #main grow to fill vertical space */
 #main {
   flex: 1;
 }
