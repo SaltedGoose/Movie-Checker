@@ -1,42 +1,60 @@
-let searchButton = document.getElementById("search")
+var searchButton = document.getElementById("search")
+var randomButton = document.getElementById("random")
 
 searchButton.onclick = search
+randomButton.onclick = random
 
-async function find(inputText){
-    let url = 'https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/movies/moviesOwned';
-    let response = await fetch(url);
-    let json = await response.json();
-    // Do something with the data
-        for (let i = 0; i < json.moviesOwned.length; i++) {
-            if (json.moviesOwned[i]["movie"].toLowerCase() == inputText.toLowerCase()){
-                return json.moviesOwned[i]
-            }
-        }
-        return null
-};
+async function retreiveDatabase (){
+    var url = "https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/movies/moviesOwned";
+    var response = await fetch(url);
+    var json = await response.json()
+    return json.moviesOwned
+}
+
+async function random(){
+    dataBase = await retreiveDatabase()
+
+    var x = Math.floor((Math.random() * dataBase.length));
+    movie_data = dataBase[x]
+
+    show_movie_info(movieData)
+}
 
 
 async function search() {
-    let input = document.getElementById("search-input")
-    let inputText = input.value
+    var input = document.getElementById("search-input")
+    var inputText = input.value
+    var movieData = null
 
-    let movie_data = await find(inputText)
+    dataBase = await retreiveDatabase()
+    for (var i = 0; i < dataBase.length; i++) {
+        if (dataBase[i]["movie"].toLowerCase() == inputText.toLowerCase()){
+            movieData = dataBase[i]
+            break
+        }
+    }
 
-    let movieName = document.getElementById("name")
-    let movieLocation = document.getElementById("location")
-    let movieLetter = document.getElementById("letter")
-    let movieNumber = document.getElementById("number")
+    show_movie_info(movieData, inputText)
+}
+
+function show_movie_info(movie_data, inputText){
+    var movieName = document.querySelector("#name")
+    var movieLocation = document.getElementById("location")
+    var movieLetter = document.getElementById("letter")
+    var movieNumber = document.getElementById("number")
     
     if (movie_data){
-        movieName.innerHTML = "Movie Name: " + movie_data["movie"]
-        movieLocation.innerHTML = "Location: " + movie_data["location"]
-        movieLetter.innerHTML = "Letter: " + movie_data["letter"]
-        movieNumber.innerHTML = "Number: " + movie_data["number"]
+        movieName.innerText = "Movie Name: " + movie_data["movie"]
+        movieLocation.innerText = "Location: " + movie_data["location"]
+        movieLetter.innerText = "Letter: " + movie_data["letter"]
+        movieNumber.innerText = "Number: " + movie_data["number"]
     }
     else{
-        movieName.innerHTML = "Movie Name: Movie Not Found" 
-        movieLocation.innerHTML = "Location: "
-        movieLetter.innerHTML = "Letter: "
-        movieNumber.innerHTML = "Number: "
+        alert("Movie: " + inputText + " Not Found. Please check name and try again")
+        movieName.innerText = "Movie Name: Movie Not Found" 
+        movieLocation.innerText = "Location: "
+        movieLetter.innerText = "Letter: "
+        movieNumber.innerText = "Number: "
     }
 }
+
