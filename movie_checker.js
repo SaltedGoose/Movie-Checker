@@ -1,5 +1,5 @@
-var searchButton = document.getElementById("search")
-var randomButton = document.getElementById("random")
+var searchButton = document.querySelector("#search")
+var randomButton = document.querySelector("#random")
 
 searchButton.onclick = search
 randomButton.onclick = random
@@ -22,7 +22,7 @@ async function random(){
 
 
 async function search() {
-    var input = document.getElementById("search-input")
+    var input = document.querySelector("#search-input")
     var inputText = input.value
     var movieData = null
 
@@ -39,9 +39,9 @@ async function search() {
 
 function show_movie_info(movie_data, inputText){
     var movieName = document.querySelector("#name")
-    var movieLocation = document.getElementById("location")
-    var movieLetter = document.getElementById("letter")
-    var movieNumber = document.getElementById("number")
+    var movieLocation = document.querySelector("#location")
+    var movieLetter = document.querySelector("#letter")
+    var movieNumber = document.querySelector("#number")
     
     if (movie_data){
         movieName.innerText = "Movie Name: " + movie_data["movie"]
