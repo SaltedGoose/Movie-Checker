@@ -12,10 +12,13 @@ async function retreiveDatabase (){
 }
 
 async function random(){
-    dataBase = await retreiveDatabase()
+    var input = document.querySelector("#search-input")
+    input.value = "";
+
+    var dataBase = await retreiveDatabase()
 
     var x = Math.floor((Math.random() * dataBase.length));
-    movieData = dataBase[x]
+    var movieData = dataBase[x]
 
     show_movie_info(movieData)
 }
@@ -26,7 +29,7 @@ async function search() {
     var inputText = input.value
     var movieData = null
 
-    dataBase = await retreiveDatabase()
+    var dataBase = await retreiveDatabase()
     for (var i = 0; i < dataBase.length; i++) {
         if (dataBase[i]["movie"].toLowerCase() == inputText.toLowerCase()){
             movieData = dataBase[i]
