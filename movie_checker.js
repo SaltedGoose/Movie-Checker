@@ -4,12 +4,6 @@ var randomButton = document.querySelector("#random")
 searchButton.onclick = search
 randomButton.onclick = random
 
-const imgs = []
-
-for (var i = 1; i < 11; i++){
-    imgs.push("img_" + i);
-}
-
 async function retreiveDatabase (){
     var url = "https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/movies/moviesOwned";
     var response = await fetch(url);
@@ -68,10 +62,9 @@ function show_movie_info(movie_data, inputText){
 }
 
 function displayMovieImg(){
-    var randomIndex = Math.floor(Math.random()*imgs.length)
+    var randomImgNum = Math.floor(Math.random()*10)
     var displayImg = document.querySelector("#movie-img")
-    displayImg.setAttribute("src", "images/" + imgs[randomIndex] + ".png")
+    displayImg.setAttribute("src", "images/img_" + randomImgNum + ".png")
 }
 
 setInterval(displayMovieImg, 10000)
-
