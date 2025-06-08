@@ -15,7 +15,7 @@ async function random(){
     dataBase = await retreiveDatabase()
 
     var x = Math.floor((Math.random() * dataBase.length));
-    movie_data = dataBase[x]
+    movieData = dataBase[x]
 
     show_movie_info(movieData)
 }
