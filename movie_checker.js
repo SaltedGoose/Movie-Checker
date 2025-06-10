@@ -2,7 +2,7 @@ var searchButton=document.querySelector("#search")
 var randomButton=document.querySelector("#random")
 searchButton.onclick=search
 randomButton.onclick=random
-async function retreiveDatabase(){var url="https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/movies/moviesOwned";var response=await fetch(url);var json=await response.json()
+var imgNum=1;async function retreiveDatabase(){var url="https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/movies/moviesOwned";var response=await fetch(url);var json=await response.json()
 return json.moviesOwned}
 async function random(){var input=$("#search-input")
 input.value="";var dataBase=await retreiveDatabase()
@@ -27,7 +27,6 @@ movieName.text("Movie Name: Movie Not Found")
 movieLocation.text("Location: ")
 movieLetter.text("Letter: ")
 movieNumber.text("Number: ")}}
-function displayMovieImg(){var randomImgNum=Math.floor(Math.random()*10)+1
-var displayImg=$("#movie-img");displayImg.fadeTo("slow",0,function(){displayImg.attr("src","images/img_"+randomImgNum+".png")});displayImg.fadeTo(5000,100)}
+function displayMovieImg(){var displayImg=$("#movie-img");displayImg.fadeOut(1000,function(){displayImg.attr("src","images/img_"+imgNum+".png").fadeIn(1000)});imgNum++}
 $(document).keydown(function(event){if(event.key==="Enter"){search()}})
-setInterval(displayMovieImg,2000)
+setInterval(displayMovieImg,5000)
