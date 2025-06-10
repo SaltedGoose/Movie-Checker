@@ -67,4 +67,11 @@ function displayMovieImg(){
     displayImg.setAttribute("src", "images/img_" + randomImgNum + ".png")
 }
 
+document.addEventListener("keydown", function(event){
+    console.log(event.key)
+    if(event.key === "Enter"){
+        search()
+    }
+})
+
 setInterval(displayMovieImg, 10000)
