@@ -62,7 +62,7 @@ function show_movie_info(movie_data, inputText){
 }
 
 function displayMovieImg(){
-    var randomImgNum = Math.floor(Math.random()*10)
+    var randomImgNum = Math.floor(Math.random()*10)+1
     var displayImg = document.querySelector("#movie-img")
     displayImg.setAttribute("src", "images/img_" + randomImgNum + ".png")
 }
